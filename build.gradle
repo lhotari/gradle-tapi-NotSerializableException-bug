@@ -1,0 +1,31 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot' 
+
+
+repositories {
+// error goes away after uncommenting the following line
+//    mavenCentral()
+}
+
+dependencyManagement {
+  imports {
+    mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.RELEASE'
+  }
+}
+
+dependencies {
+    compile 'org.springframework.cloud:spring-cloud-starter-config'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+}
